@@ -3,7 +3,6 @@ from sqlalchemy.orm import DeclarativeBase
 
 from app.core.config import settings
 
-
 # Create async engine
 engine = create_async_engine(
     settings.DATABASE_URL,
@@ -27,6 +26,8 @@ class Base(DeclarativeBase):
 async def create_db_and_tables():
     """Create all database tables."""
     async with engine.begin() as conn:
+        from app.models.trip import Trip
+
         await conn.run_sync(Base.metadata.create_all)
 
 

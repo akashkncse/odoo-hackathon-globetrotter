@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from app.core.users import auth_backend, fastapi_users
 from app.schemas.user import UserCreate, UserRead, UserUpdate
-
+from app.api.trips import trips_router
 router = APIRouter()
 
 # Auth routes - login, logout
@@ -17,6 +17,11 @@ router.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
     tags=["auth"],
+)
+router.include_router(
+    trips_router,
+    prefix="/trips",
+    tags=["trips"]
 )
 
 # Password reset routes
