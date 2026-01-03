@@ -1,73 +1,136 @@
-# React + TypeScript + Vite
+# 🎨 Globetrotter Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Modern React frontend for the Globetrotter travel planning application.
 
-Currently, two official plugins are available:
+## 📋 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is the frontend for Globetrotter, built with React 19, TypeScript, and Tailwind CSS. It provides a beautiful, responsive interface for planning and managing your travels.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS
+- **DaisyUI** - Beautiful UI components
+- **React Router** - Client-side routing
+- **Axios** - HTTP client
+- **Lucide React** - Icons
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+frontend/
+├── src/
+│   ├── pages/          # Page components
+│   │   ├── Home.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Login.tsx
+│   │   ├── Register.tsx
+│   │   ├── CreateTrip.tsx
+│   │   ├── TripItinerary.tsx
+│   │   └── UserProfile.tsx
+│   ├── components/     # Reusable components
+│   │   └── Navbar.tsx
+│   ├── api/            # API configuration
+│   │   └── axios.ts
+│   ├── utils/          # Utility functions
+│   │   └── api.ts
+│   ├── App.tsx         # Main app component
+│   ├── App.css         # App styles
+│   ├── main.tsx        # Entry point
+│   └── index.css       # Global styles
+├── public/             # Static assets
+├── package.json        # Dependencies
+└── vite.config.ts      # Vite configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18 or higher
+- npm or yarn
+
+### Installation
+
+1. **Navigate to the frontend folder**
+
+   ```bash
+   cd frontend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+The app will be running at `http://localhost:5173`
+
+## 📜 Available Scripts
+
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start development server |
+| `npm run build`   | Build for production     |
+| `npm run preview` | Preview production build |
+| `npm run lint`    | Run ESLint               |
+
+## 🗺️ Pages & Routes
+
+| Route            | Page           | Description             |
+| ---------------- | -------------- | ----------------------- |
+| `/`              | Dashboard      | View all your trips     |
+| `/home`          | Home           | Landing page            |
+| `/login`         | Login          | Sign in to your account |
+| `/register`      | Register       | Create a new account    |
+| `/create-trip`   | Create Trip    | Plan a new trip         |
+| `/trips/:tripId` | Trip Itinerary | View trip details       |
+| `/profile`       | User Profile   | Manage your profile     |
+
+## 🎨 Styling
+
+The app uses **Tailwind CSS** with **DaisyUI** components for a clean, modern look.
+
+### Customization
+
+- Global styles: `src/index.css`
+- App-specific styles: `src/App.css`
+- Tailwind config is handled via `@tailwindcss/vite` plugin
+
+## 🔗 API Integration
+
+The frontend connects to the backend API using Axios. API configuration is in `src/api/axios.ts`.
+
+Make sure the backend server is running at `http://localhost:8000` before using the app.
+
+## 🏗️ Building for Production
+
+```bash
+# Build the app
+npm run build
+
+# Preview the build
+npm run preview
 ```
+
+The production build will be in the `dist/` folder.
+
+## 🧹 Code Quality
+
+```bash
+# Run linting
+npm run lint
+```
+
+ESLint is configured with TypeScript and React rules for clean, consistent code.
+
+---
+
+Built with ❤️ using React + TypeScript + Vite

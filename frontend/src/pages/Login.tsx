@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // <--- Import useEffect
 import axios from "axios";
 import { LogIn } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // <--- CHANGED for React Router
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const navigate = useNavigate(); // <--- CHANGED
+  const navigate = useNavigate();
+
+  // --- NEW CODE START ---
+  // Check if user is already logged in when the page loads
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
+  // --- NEW CODE END ---
 
   // State for form data
   const [formData, setFormData] = useState({
@@ -39,7 +49,7 @@ function Login() {
 
       // 2. Send request
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/jwt/login",
+        "http://127.0.0.1:8000/api/v1/auth/jwt/login",
         params,
         {
           headers: {
@@ -53,9 +63,9 @@ function Login() {
       // 3. Store Token
       localStorage.setItem("access_token", response.data.access_token);
 
-      // 4. Redirect to Dashboard
-      navigate("/dashboard"); // <--- CHANGED
-    } catch (err) {
+      // 4. Redirect to Home
+      navigate("/");
+    } catch (err: any) {
       console.error("Login error:", err);
       const errorMsg =
         err.response?.data?.detail || "Invalid username or password.";

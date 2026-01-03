@@ -27,6 +27,7 @@ async def create_db_and_tables():
     """Create all database tables."""
     async with engine.begin() as conn:
         from app.models.trip import Trip
+        from app.models.itinerary import ItineraryItem
 
         await conn.run_sync(Base.metadata.create_all)
 
